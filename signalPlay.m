@@ -17,7 +17,8 @@ m = ( 0:1:size( t, 2 ) - 1 );
 F = 1; uu = 1;
 for i = 1:1:size(t, 2)
 
-    % Find frequency infemum...
+    % Find hamonic frequency infemum. This ensures no aliasing in the
+    % system.
 
     if( m( i ) * f0 >= Fs / D )
 
