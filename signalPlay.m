@@ -66,6 +66,8 @@ UB = size( z, 1 ) / 2 + size( T, 2 ) / 2 - 1;
 
 C(1,:) = z( LB:UB, 1);
 
+plot( T(1:1:H), C(1:1:H), 'g' );
+
 sound( C, S( 1, 3 ) );
 
 pause( 3 );
@@ -78,9 +80,9 @@ AWGN = sqrt( SIG / NOI ) .* randn( 1, size(C, 2) );
 
 X = cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) + C(1,1:end) + AWGN;
 
-plot( T(1:1:H), X(1:1:H), 'g' ); hold on;
 plot( T(1:1:H), AWGN(1:1:H), 'm' ); hold on;
 plot( T(1:1:H), Y(1:1:H), 'k' ); hold on; 
+plot( T(1:1:H), C(1:1:H), 'g' ); hold on;
 
 sound( X, S( 1, 3 ) );
 
