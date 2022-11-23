@@ -76,9 +76,7 @@ xlabel("T");
 ylabel( "C[T]");
 yline(0);
 
-sound( C, S( 1, 3 ) );
-
-pause( 3 );
+sound( C, S( 1, 3 ) ); pause( 3 );
 
 SIG = sum( abs( C ), 2 ); NOI = sum( abs( Y ), 2 );
 
