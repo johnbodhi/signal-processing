@@ -66,7 +66,13 @@ UB = size( z, 1 ) / 2 + size( T, 2 ) / 2 - 1;
 
 C(1,:) = z( LB:UB, 1);
 
-plot( T(1:1:H), C(1:1:H), 'g' );
+figure( 'name', 'John Legend - Nervous Audio Sample');
+subplot(1,2,1);
+plot( T(1:1:H), C(1:1:H), 'g' ); 
+title('John Legend - Nervous Audio Sample without Noise');
+xlabel("N");
+ylabel( "C[n]");
+yline(0);
 
 sound( C, S( 1, 3 ) );
 
@@ -80,9 +86,14 @@ AWGN = sqrt( SIG / NOI ) .* randn( 1, size(C, 2) );
 
 X = cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) + C(1,1:end) + AWGN;
 
+subplot(1,2,2)
 plot( T(1:1:H), AWGN(1:1:H), 'm' ); hold on;
 plot( T(1:1:H), Y(1:1:H), 'k' ); hold on; 
 plot( T(1:1:H), C(1:1:H), 'g' ); hold on;
+title('John Legend - Nervous Audio Sample with Noise');
+xlabel("N");
+ylabel( "C[n]");
+yline(0);
 
 sound( X, S( 1, 3 ) );
 
