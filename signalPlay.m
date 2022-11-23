@@ -78,8 +78,7 @@ title('John Legend - Nervous Audio Sample without Noise');
 xlabel("T");
 ylabel("C[T]");
 % yline(0);
-legend( 'Signal' );
-
+legend( 'Target Signal' );
 
 sound( C, S( 1, 3 ) ); pause( 3 );
 
@@ -97,7 +96,7 @@ title('John Legend - Nervous Audio Sample with Noise');
 xlabel("T");
 ylabel( "C[T]");
 % yline(0);
-legend('AWGN', 'Harmonic Interference', 'Signal' );
+legend('AWGN', 'Harmonic Interference', 'Target Signal' );
 
 sound( X, S( 1, 3 ) ); pause(3);
 
@@ -135,6 +134,7 @@ plot( T(1:1:H), X(1:1:H), 'g' ); hold on;
 title('John Legend - Nervous Audio Sample De-Noised');
 xlabel("T");
 ylabel( "C[T]");
-yline(0);
+% yline(0);
+legend( 'Target Signal' );
 
 sound( X, S( 1, 3 ) );
