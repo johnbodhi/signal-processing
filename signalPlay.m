@@ -70,8 +70,8 @@ figure( 'name', 'John Legend - Nervous Audio Sample');
 subplot(1,2,1);
 plot( T(1:1:H), C(1:1:H), 'g' ); 
 title('John Legend - Nervous Audio Sample without Noise');
-xlabel("N");
-ylabel( "C[n]");
+xlabel("T");
+ylabel( "C[T]");
 yline(0);
 
 sound( C, S( 1, 3 ) );
@@ -91,8 +91,8 @@ plot( T(1:1:H), AWGN(1:1:H), 'm' ); hold on;
 plot( T(1:1:H), Y(1:1:H), 'k' ); hold on; 
 plot( T(1:1:H), C(1:1:H), 'g' ); hold on;
 title('John Legend - Nervous Audio Sample with Noise');
-xlabel("N");
-ylabel( "C[n]");
+xlabel("T");
+ylabel( "C[T]");
 yline(0);
 
 sound( X, S( 1, 3 ) );
