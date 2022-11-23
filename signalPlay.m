@@ -8,7 +8,7 @@ phi  = pi / 2; % Phase offset to center power signal form zero to zero...
 
 S = [ 1e3 8e3 44.1e3 96e3 ];
 
-Fs = S( 1, 4 ); % We can see the effect of machine smaple rate in the pulse superposition.
+Fs = S( 1, 3 ); % We can see the effect of machine smaple rate in the pulse superposition.
 
 t = 0:1/Fs:(1-1/Fs);
 
@@ -64,7 +64,9 @@ LB = size( z, 1 ) / 2 - size( T, 2 ) / 2;
 
 UB = size( z, 1 ) / 2 + size( T, 2 ) / 2 - 1;
 
-C(1,:) = z( LB:UB, 1);
+C(1,:) = z(LB:UB,1); 
+
+audiowrite('timeSample.mp4',C,S(1,3))
 
 figure( 'name', 'John Legend - Nervous Audio Sample');
 subplot(1,2,1);
@@ -96,6 +98,8 @@ ylabel( "C[T]");
 yline(0);
 
 sound( X, S( 1, 3 ) );
+
+audiowrite('timeSampleNoise.mp4',X,S(1,3)) % Notice that the proper time of the sample is the normalized value of the interval.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
