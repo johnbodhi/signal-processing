@@ -4,7 +4,7 @@ f0 = 1.001; % The fundamental frequency needs to be greater than unity due to no
 
 D = 2; % D needs to be greater than or equal to 2 in the integers... 
 
-phi  = pi / 2; % Phase offset to center power signal form zero to zero...
+phi  = pi / 2; % Phase offset to center power signal over time...
 
 S = [ 1e3 8e3 44.1e3 96e3 ];
 
@@ -72,7 +72,7 @@ C(1,:) = z(LB:UB,1);
 audiowrite('timeSample.mp4',C,S(1,3))
 
 figure( 'name', 'John Legend - Nervous Audio Sample');
-subplot(1,2,1);
+subplot(1,3,1);
 plot( T(1:1:H), C(1:1:H), 'g' ); 
 title('John Legend - Nervous Audio Sample without Noise');
 xlabel("T");
@@ -89,7 +89,7 @@ AWGN = sqrt( SIG / NOI ) .* randn( 1, size(C, 2) );
 
 X = cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) + C(1,1:end) + AWGN;
 
-subplot(1,2,2)
+subplot(1,3,2);
 plot( T(1:1:H), AWGN(1:1:H), 'm' ); hold on;
 plot( T(1:1:H), Y(1:1:H), 'k' ); hold on; 
 plot( T(1:1:H), C(1:1:H), 'g' ); hold on;
@@ -98,11 +98,44 @@ xlabel("T");
 ylabel( "C[T]");
 yline(0);
 
-sound( X, S( 1, 3 ) );
+sound( X, S( 1, 3 ) ); pause(3);
 
 audiowrite('timeSampleNoise.mp4',X,S(1,3)) % Notice that the proper time of the sample is the normalized value of the interval.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% We need to de-noise the signal X, and then classify the origination of
+% the signal.
+
+% A simple idea for de-noising is to filter all frequency hamoics and AWGN from the
+% signal...
+
+% AWGN = sqrt( SIG / NOI ) .* randn( 1, size(C, 2) );
+
+X = X - ( cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) ) - AWGN;
+
+XX = 0;
+for i = 1:1:size(T,2)
+
+    if( X( i ) ~= C( i ) )
+
+        XX = XX + 1;
+    end
+end
+
+ERROR = XX / size(T,2);
+
+if( ERROR <= round( 0.05 * size( C,2 ) ) )
+    disp("This is John Legend - Nervous!")
+end
+
+subplot(1,3,3);
+plot( T(1:1:H), X(1:1:H), 'g' ); hold on;
+title('John Legend - Nervous Audio Sample De-Noised');
+xlabel("T");
+ylabel( "C[T]");
+yline(0);
+
+sound( X, S( 1, 3 ) );
 
 
