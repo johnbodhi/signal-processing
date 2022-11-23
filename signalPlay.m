@@ -115,17 +115,17 @@ audiowrite('timeSampleNoise.mp4',X,S(1,3)) % Notice that the proper time of the 
 X = X - ( cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) ) - AWGN;
 
 XX = 0;
-for i = 1:1:size(T,2)
+for i = 1:1:size(C,2)
 
-    if( X( i ) ~= C( i ) )
+    if( X( i ) <= C( i ) - sqrt( SIG / NOI ) || X( i ) >= C( i ) + sqrt( SIG / NOI ) )
 
-        XX = XX + 1;
+        XX = XX + 1; % Wee need to account for error propagation in the system from subtraction.
     end
 end
 
-ERROR = XX / size(T,2);
+ERROR = XX / size(X,2);
 
-if( ERROR <= round( 0.05 * size( C,2 ) ) )
+if( ERROR <= 0.05 )
     disp("This is John Legend - Nervous!")
 end
 
