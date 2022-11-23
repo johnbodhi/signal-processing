@@ -32,15 +32,13 @@ if( G )
 
     % We need to clip the time inteval to include only those frequencies
     % satified by the Shannon-Nyquist Theorem...
-
-    % Eventhough these are interference signals, we can keep them in the
-    % anti-aliasing range of the system dicated by the sample rate...
+    %
 
     T = t( 1:1:2 * F( 1, 1 ) ); M = m( 1:1:size( T, 2 ) );
 
     % Power waveform...
 
-    Y = cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ); % This generates a superposition of sinusoidal power harmomics.
+    Y = cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ); % This generates a superposition of power harmomics.
 else 
 
     y = cos( 2 * pi * f0 * m .* t ) + sin( 2 * pi * f0 * ( m + 1 ) .* t - phi );
