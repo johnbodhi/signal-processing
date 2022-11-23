@@ -125,7 +125,7 @@ end
 
 ERROR = XX / size(X,2);
 
-if( ERROR <= 0.05 )
+if( ERROR <= 0.01 )
     disp("This is John Legend - Nervous!")
 end
 
