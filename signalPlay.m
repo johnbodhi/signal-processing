@@ -72,7 +72,7 @@ C(1,:) = z(LB:UB,1);
 audiowrite('timeSample.mp4',C,S(1,3))
 
 figure( 'name', 'John Legend - Nervous Audio Sample');
-subplot(1,3,1);
+subplot(3,1,1);
 plot( T(1:1:H), C(1:1:H), 'g' ); 
 title('John Legend - Nervous Audio Sample without Noise');
 xlabel("T");
@@ -90,7 +90,7 @@ AWGN = sqrt( SIG / NOI ) .* randn( 1, size(C, 2) );
 
 X = cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) + C(1,1:end) + AWGN;
 
-subplot(1,3,2);
+subplot(3,1,2);
 plot( T(1:1:H), AWGN(1:1:H), 'm', T(1:1:H), Y(1:1:H), 'k', T(1:1:H), C(1:1:H), 'c'); hold on;
 title('John Legend - Nervous Audio Sample with Noise');
 xlabel("T");
@@ -129,7 +129,7 @@ if( ERROR <= 0.05 )
     disp("This is John Legend - Nervous!")
 end
 
-subplot(1,3,3);
+subplot(3,1,3);
 plot( T(1:1:H), X(1:1:H), 'g' ); hold on;
 title('John Legend - Nervous Audio Sample De-Noised');
 xlabel("T");
