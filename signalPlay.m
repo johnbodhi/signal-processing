@@ -110,7 +110,33 @@ audiowrite('timeSampleNoise.mp4',X,S(1,3)) % Notice that the proper time of the 
 % A simple idea for de-noising is to filter all frequency hamoics and AWGN from the
 % signal...
 
+% New interference and noise...
+
 % AWGN = sqrt( SIG / NOI ) .* randn( 1, size(C, 2) );
+% 
+% if( G )
+% 
+%     % We need to clip the time inteval to include only those frequencies
+%     % satified by the Shannon-Nyquist Theorem...
+% 
+%     % Eventhough these are interference signals, we can keep them in the
+%     % anti-aliasing range of the system dicated by the sample rate...
+% 
+%     T = t( 1:1:2 * F( 1, 1 ) ); M = m( 1:1:size( T, 2 ) );
+% 
+%     % Power waveform...
+% 
+%     Y = cos( 2 * pi * f0 * ( M + 0.5 ) .* T ) + sin( ( 2 * pi * f0 * ( M + 1.5 ) .* T ) - phi ); % This generates a superposition of sinusoidal power harmomics.
+% else 
+% 
+%     y = cos( 2 * pi * f0 * m .* t ) + sin( 2 * pi * f0 * ( m + 1 ) .* t - phi );
+% end
+% 
+% Y = cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) + C(1,1:end) + AWGN;
+% 
+% X = Y;
+
+% Old interference and noise...
 
 X = X - ( cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) ) - AWGN;
 
@@ -130,7 +156,7 @@ if( ERROR <= 0.01 )
 end
 
 subplot(3,1,3);
-plot( T(1:1:H), X(1:1:H), 'g' ); hold on;
+plot( T(1:1:H), X(1:1:H), 'r' ); hold on;
 title('John Legend - Nervous Audio Sample De-Noised');
 xlabel("T");
 ylabel( "C[T]");
