@@ -177,7 +177,7 @@ sound( X, S( 1, 3 ) );
 
 % Guidance...
 
-% Encryption
+% Encryption...
 
-% Compress
+% Compression...
 
