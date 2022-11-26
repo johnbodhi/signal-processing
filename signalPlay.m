@@ -112,33 +112,33 @@ audiowrite('timeSampleNoise.mp4',X,S(1,3)) % Notice that the proper time of the 
 
 % New interference and noise...
 
-% AWGN = sqrt( SIG / NOI ) .* randn( 1, size(C, 2) );
-% 
-% if( G )
-% 
-%     % We need to clip the time inteval to include only those frequencies
-%     % satified by the Shannon-Nyquist Theorem...
-% 
-%     % Eventhough these are interference signals, we can keep them in the
-%     % anti-aliasing range of the system dicated by the sample rate...
-% 
-%     T = t( 1:1:2 * F( 1, 1 ) ); M = m( 1:1:size( T, 2 ) );
-% 
-%     % Power waveform...
-% 
-%     Y = cos( 2 * pi * f0 * ( M + 0.5 ) .* T ) + sin( ( 2 * pi * f0 * ( M + 1.5 ) .* T ) - phi ); % This generates a superposition of sinusoidal power harmomics.
-% else 
-% 
-%     y = cos( 2 * pi * f0 * m .* t ) + sin( 2 * pi * f0 * ( m + 1 ) .* t - phi );
-% end
-% 
-% Y = cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) + C(1,1:end) + AWGN;
-% 
-% X = Y;
+AWGN = sqrt( SIG / NOI ) .* randn( 1, size(C, 2) );
+
+if( G )
+
+    % We need to clip the time inteval to include only those frequencies
+    % satified by the Shannon-Nyquist Theorem...
+
+    % Eventhough these are interference signals, we can keep them in the
+    % anti-aliasing range of the system dicated by the sample rate...
+
+    T = t( 1:1:2 * F( 1, 1 ) ); M = m( 1:1:size( T, 2 ) );
+
+    % Power waveform...
+
+    Y = cos( 2 * pi * f0 * ( M + 0.5 ) .* T ) + sin( ( 2 * pi * f0 * ( M + 1.5 ) .* T ) - phi ); % This generates a superposition of sinusoidal power harmomics.
+else 
+
+    y = cos( 2 * pi * f0 * m .* t ) + sin( 2 * pi * f0 * ( m + 1 ) .* t - phi );
+end
+
+Y = cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) + C(1,1:end) + AWGN;
+
+X = Y;
 
 % Old interference and noise...
 
-X = X - ( cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) ) - AWGN;
+% X = X - ( cos( 2 * pi * f0 * M .* T ) + sin( ( 2 * pi * f0 * ( M + 1 ) .* T ) - phi ) ) - AWGN;
 
 XX = 0;
 for i = 1:1:size(C,2)
@@ -177,9 +177,7 @@ sound( X, S( 1, 3 ) );
 
 % Guidance...
 
+% Encryption
 
-
-
-
-
+% Compress
 
