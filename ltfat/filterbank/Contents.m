@@ -40,7 +40,7 @@
 %
 %  Reassignment and phase gradient
 %    FILTERBANKPHASEGRAD      - Instantaneous time/frequency from signal
-%    FILTERBANKREASSIGN       - Reassign filterbank spectrogram
+%    FILTERBANKREASSIGN  - Reassign filterbank spectrogram
 %    FILTERBANKSYNCHROSQUEEZE - Synchrosqueeze filterbank spectrogram  
 %
 %  Phase reconstruction
