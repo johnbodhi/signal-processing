@@ -34,7 +34,9 @@
 
 % Load audio signal
 % Use the 'glockenspiel' signal.
-sig=gspi;
+%sig=gspi;
+
+sig = audioread('gspi.mp3');
 
 SigLength = 2^16;
 sig = sig(1:SigLength);

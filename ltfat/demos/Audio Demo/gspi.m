@@ -43,5 +43,5 @@ f=mfilename('C:\Users\johnm\OneDrive\Documents\GitHub\signal-processing\ltfat\de
 % s = wavload([f,'.wav']);
 % fs = 44100;
 
-[ s, fs ] = audioread('gspi.wav');
+[ s, fs ] = audioread('gspi.mp3');
 % [ s, fs ] = audioread('John Legend - Nervous.mp3');
