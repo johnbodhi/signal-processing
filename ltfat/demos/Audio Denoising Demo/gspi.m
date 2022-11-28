@@ -43,6 +43,8 @@ f=mfilename('fullpath');
 % s = wavload([f,'.wav']);
 % fs = 44100;
 
-[s, fs] = audioread('Grnfthr.mp4');
+[s, fs] = audioread('Getting High.mp4');
+
+
 
 
