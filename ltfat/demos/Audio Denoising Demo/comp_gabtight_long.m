@@ -1,8 +1,12 @@
-function complainif_argnonotinrange(fnargin,limitlo,limithi,callfun)
-% This is just a replacement for 
-% narginchk and nargchk
+function gt=comp_gabtight_long(g,a,M);
+%COMP_GABTIGHT_LONG  Compute tight window
 %
-%   Url: http://ltfat.github.io/doc/comp/complainif_argnonotinrange.html
+%  This is a computational subroutine, do not call it directly, use
+%  GABTIGHT instead.
+%
+%  See also: gabtight
+%
+%   Url: http://ltfat.github.io/doc/comp/comp_gabtight_long.html
 
 % Copyright (C) 2005-2022 Peter L. Soendergaard <peter@sonderport.dk> and others.
 % This file is part of LTFAT version 2.5.0
@@ -19,12 +23,49 @@ function complainif_argnonotinrange(fnargin,limitlo,limithi,callfun)
 %
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  
+L=length(g);
+R=size(g,2);
 
-if nargin<3
-    callfun = mfilename;
-end
+gf=comp_wfac(g,a,M);
 
-if fnargin<limitlo || fnargin>limithi
-   error('%s: Number of arguments is not in the range [%d,%d].',upper(callfun),limitlo,limithi);
-end
+b=L/M;
+N=L/a;
+
+c=gcd(a,M);
+d=gcd(b,N);
+  
+p=b/d;
+q=N/d;
+
+G=zeros(p,q*R,assert_classname(g));
+
+
+
+if p==1
+  % Integer oversampling, including Wilson basis.
+  for ii=1:c*d
+    gf(:,ii)=gf(:,ii)/norm(gf(:,ii));
+  end;
+else
+  for ii=1:c*d
+    
+    G(:)=gf(:,ii);
+    
+    % Compute thin SVD
+    [U,sv,V] = svd(G,'econ');
+    
+    Gtight=U*V';  
+    
+    gf(:,ii)=Gtight(:);
+  end;
+end;
+
+gt=comp_iwfac(gf,L,a,M);
+
+if isreal(g)
+  gt=real(gt);
+end;
+
+
 

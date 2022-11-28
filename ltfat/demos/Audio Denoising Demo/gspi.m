@@ -43,5 +43,6 @@ f=mfilename('fullpath');
 % s = wavload([f,'.wav']);
 % fs = 44100;
 
-[ s, fs ] = audioread('gspi.wav');
+[s, fs] = audioread('Grnfthr.mp4');
+
 
