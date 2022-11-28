@@ -161,7 +161,7 @@ title('John Legend - Nervous Audio Sample De-Noised');
 xlabel("T");
 ylabel( "C[T]");
 % yline(0);
-legend( 'Target Signal' );
+legend( 'Mixed Signal' );
 
 sound( X, S( 1, 3 ) );
 
