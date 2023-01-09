@@ -45,6 +45,3 @@ f=mfilename('fullpath');
 
 [s, fs] = audioread('gspi.mp3');
 
-
-
-
