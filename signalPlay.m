@@ -171,9 +171,18 @@ sound( X, S( 1, 3 ) );
 
 % De-noise...
 
+    % Wavletes! We can sweep an entire signal sample with variable
+    % wavelengths and amplitudes while storing them in a histogram until the origonal signal vanishes.
+    % Noise reduction occurs when gently reconstructing the origonal signal form
+    % the frequency bins of the histogram.
+
 % Classify...
 
+    % CNN
+
 % Track...
+
+    % Kalman Filter
 
 % Guidance...
 
