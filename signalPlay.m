@@ -169,14 +169,7 @@ sound( X, S( 1, 3 ) );
 
 % Signal Processing: Ph.D-Level Topics...
 
-% De-noisig / Reconstruction...
-
-    % Wavletes! We can sweep an entire signal sample with variable
-    % wavelengths and amplitudes while storing them in a histogram until the origonal signal vanishes.
-    % Noise reduction occurs when gently reconstructing the origonal signal form
-    % the frequency bins of the histogram.
-
-
+% De-noising / Reconstruction...
 
 % Classification...
 
@@ -189,4 +182,3 @@ sound( X, S( 1, 3 ) );
 % Encryption...
 
 % Compression...
-
